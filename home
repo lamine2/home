@@ -1,0 +1,65 @@
+def forward (stc, i): 
+ k = 1
+go = 1
+out = 0
+if(stc[i]=="("):
+      i=i+1
+      for j in range(i,len(stc)) : 
+         if(go==1):
+                 if(stc[j]==")" ):
+                     k=k-1
+                If(k==0) :
+                      Out=j
+                     go=0
+              elif stc[j]=="(" :
+                     k=k+1
+return out
+def backward (stc, i): 
+ k = 1
+go = 1
+out = 0
+if(stc[i]=="("):
+      i=i-1
+     for j in range(i,1)) : 
+         if(go==1):
+                 if(stc[j]=="(" ):
+                  k=k-1
+                    If(k==0) :
+                      Out=j
+                     go=0
+              elif stc[j]==")" :
+                     k=k+1
+return out
+def mat_struct (struct, seq): 
+  nts = seq.split ()
+nts = nts[0]
+stc = struct.split()
+stc = stc[0]
+first_position = []
+before =  []
+after = []
+sequence = []
+second_position = []
+bound = []
+for i in range(1,len(stc)):
+      first_position.append(i)
+     before.append(i-1)
+     after.append(i+1)
+     sequence.append(nts[i])
+     second_position.append(i)
+     if stc[i] == "." :
+          bound.append (0) 
+    elif stc[i] == ")":
+         b = backward(stc,i)
+        bound.append(b)
+   elif(stc[i]=="("):
+       b = forward(stc,i)
+      bound.append(b)
+ df = pd.DataFrame (columns=['First Position', 'Before', 'After','Sequence','Second Position','Bound'])
+df['First Position'] = first_position
+df['Before'] = before
+df['After'] = after
+df['Sequence'] = sequence
+df['Second Position'] = second_position
+df['Bound'] = bound
+return df
